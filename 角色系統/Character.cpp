@@ -11,7 +11,7 @@ string Character::toString() const {
 } // end toString()
 
 // 從字串中解析出玩家資料（反序列化）
-Character Character::fromString( const string& data ) {
+Character& Character::fromString( const string& data ) {
     size_t pos1 = data.find( "\n" );
     string name = data.substr( 0, pos1 );
 

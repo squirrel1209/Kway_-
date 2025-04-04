@@ -1,14 +1,15 @@
-    
+#include "LoginSystem.h"
+
 void LoginSystem::registerUser( const string& username, const string& password ) {
-    Character player( username );  // 創建一個新的玩家
-    string data = "password=" + password;  // 假設這是儲存的密碼資料
+    Character player( username, password );  // 創建一個新的玩家
     playerDataStorage -> savePlayerData( player );  // 儲存玩家資料
     cout << "註冊成功！" << endl;
 } // end registerUser
 
 
-bool LoginSystem::loginUser( const string& username, const string& password ) {
-    Character player = playerDataStorage->loadPlayerData( username );  // 載入玩家資料
+bool LoginSystem::loginUser( const string& username, const string& password, Character& player ) {
+    player = playerDataStorage -> loadPlayerData( username );  // 載入玩家資料
+    
     if ( player.getName() == "" ) {
         cout << "帳號不存在！" << endl;
         return false;

@@ -1,3 +1,5 @@
+#include "FilePlayerData.h"
+
 class LoginSystem {
 private:
     IPlayerData* playerDataStorage;  
