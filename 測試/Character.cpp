@@ -1,5 +1,7 @@
 #include "Character.h"
 
+Character::Character() : name(""), password(""), level(1), hp(100), money(500) {}
+
 void Character::showStatus() const {
     cout << "玩家: " << name << " | 等級: " << level << " | HP: " << hp << " | 金錢: " << money << endl;
 } // end showStatus()
