@@ -27,4 +27,6 @@ Character Character::fromString( const string& data ) {
     int money = stoi( data.substr( pos4 + 1 ) );
 
     return Character( name, password, level, hp, money );
-}
+} // end fromString()
+
+void Character::takeDamage( int dmg ) { hp -= dmg; if (hp < 0) hp = 0; }

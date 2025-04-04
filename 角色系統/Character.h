@@ -34,6 +34,8 @@ public:
     // 從字串中解析出玩家資料（反序列化）
     static Character fromString( const string& data );
     
+    void takeDamage( int dmg );
+    
 };
 
 class Player : public Character {

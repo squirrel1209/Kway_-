@@ -1,3 +1,58 @@
-角色系統 -> 資料系統 -> 登入系統  ( 這三個是有關聯的 )
+角色系統 、 資料系統 、 登入系統  
+角色系統、怪物&戰鬥系統、背包系統、物品系統
+物品系統 、 交易系統
 
-物品系統 -> 交易系統
+
+1. ItemSystem（物品定義與工廠）
+管理全遊戲所有的物品定義（資料表）
+
+可以負責產生（工廠模式）物品的實例
+
+功能例如：
+
+Item* CreateItem(std::string id)
+
+const ItemInfo& GetItemInfo(std::string id)
+
+✅ 2. InventorySystem（背包系統）
+管理玩家的物品欄（添加、刪除、查詢）
+
+主要與 Player 搭配
+
+功能例如：
+
+bool AddItem(Player&, Item*)
+
+bool RemoveItem(Player&, Item*)
+
+void ListInventory(Player&)
+
+✅ 3. TradeSystem（交易系統）
+處理商店、拍賣場、玩家間物品交換邏輯
+
+不儲存物品本身，透過 InventorySystem 與 ItemSystem 配合
+
+✅ 4. Player 結構變得更乾淨
+cpp
+複製
+編輯
+class Player {
+public:
+    std::string name;
+    int gold;
+    Inventory inventory;  // 不再用 vector<Item*>
+};
+
+
++----------------+        +-------------------+
+|   ItemSystem   |<-------|     TradeSystem   |
++----------------+        +-------------------+
+        ^                         |
+        |                         |
+        |                  +-------------+
+        |                  | InventorySystem |
+        |                         ^
+        v                         |
++----------------+        +-------------+
+|     Player     |------->| Inventory    |
++----------------+        +-------------+
