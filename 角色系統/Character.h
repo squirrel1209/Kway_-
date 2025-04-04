@@ -17,9 +17,8 @@ protected:
 public:
     Character();
     Character( string name, string password, int level = 1, int hp = 100, int money = 500 ) 
-        : name( name ), password( password ) {}
+        : name( name ), password( password ),  level( level ), hp( hp ), money( money ) {}
         
-    Character() : name( name ), password( password ),  level( level ), hp( hp ), money( money ) {}
 
 
     // 顯示玩家狀態
@@ -35,7 +34,7 @@ public:
     string toString() const ;
     
     // 從字串中解析出玩家資料（反序列化）
-    static Character& fromString( const string& data );
+    static Character fromString( const string& data );
     
 }; 
 #endif // CHARACTER_H   // 結束條件，防止重複包含

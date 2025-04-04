@@ -1,24 +1,39 @@
-#include "FilePlayerData.h"
-
+#include "LoginSystem.h"
 
 int main() {
-    // 創建一個 Character 物件，並顯示它的初始狀態
-    Character player("Player1", "password123", 5, 80, 1000);
-    cout << "Original Player:" << endl;
-    player.showStatus();
-    cout << endl;
+    FilePlayerData fileStorage;  // 使用檔案儲存方式
+    LoginSystem loginSystem(&fileStorage);
 
-    // 儲存玩家資料到檔案
-    FilePlayerData fileData;
-    fileData.savePlayerData(player);
+    string username, password;
 
-    // 載入玩家資料
-    Character loadedPlayer = fileData.loadPlayerData("Player1");
 
-    // 顯示載入的玩家資料
-    cout << "Loaded Player:" << endl;
-    loadedPlayer.showStatus();
+    cout << "1. 註冊  2. 登入  3. 離開" << endl;
+    int choice;
+    cin >> choice;
+
+    if ( choice == 1 ) {
+        cout << "輸入使用者名稱: ";
+        cin >> username;
+        cout << "輸入密碼: ";
+        cin >> password;
+        loginSystem.registerUser( username, password);
+    } // end if
     
-    system( "pause" );
+    else if ( choice == 2 )  {
+        cout << "輸入使用者名稱: ";
+        cin >> username;
+        cout << "輸入密碼: ";
+        cin >> password;
+        if ( !loginSystem.loginUser( username, password ) ) return 0;
+    } 
+    
+    else {
+        return 0;
+    }
+
+    // 登入後可以操作玩家資料
+    Character player = fileStorage.loadPlayerData(username);
+    player.showStatus();
+
     return 0;
 }

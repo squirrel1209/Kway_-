@@ -17,8 +17,10 @@ protected:
 public:
     Character();
     Character( string name, string password, int level = 1, int hp = 100, int money = 500 ) 
-        : name( name ), password( password ), level( level ), hp( hp ), money( money ) {}
+        : name( name ), password( password ),  level( level ), hp( hp ), money( money ) {}
         
+
+
     // Åã¥Üª±®aª¬ºA
     void showStatus() const ;
     

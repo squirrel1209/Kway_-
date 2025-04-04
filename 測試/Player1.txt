@@ -1,5 +1,0 @@
-Player1
-password123
-5
-80
-1000
