@@ -30,6 +30,5 @@ public:
     // 從字串中解析出玩家資料（反序列化）
     static Character fromString( const string& data );
     
-};
-
+}; 
 #endif // CHARACTER_H   // 結束條件，防止重複包含
