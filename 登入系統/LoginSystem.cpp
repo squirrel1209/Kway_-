@@ -1,21 +1,21 @@
 #include "LoginSystem.h"
 
 void LoginSystem::registerUser( const string& username, const string& password ) {
-    Character player( username, password );  // ³Ð«Ø¤@­Ó·sªºª±®a
-    playerDataStorage -> savePlayerData( player );  // Àx¦sª±®a¸ê®Æ
+    Character player( username, password );  // å‰µå»ºä¸€å€‹æ–°çš„çŽ©å®¶
+    playerDataStorage -> savePlayerData( player );  // å„²å­˜çŽ©å®¶è³‡æ–™
     cout << "Registration successful~" << endl;
 } // end registerUser
 
 
 bool LoginSystem::loginUser( const string& username, const string& password ) {
-    Character player = playerDataStorage -> loadPlayerData( username );  // ¸ü¤Jª±®a¸ê®Æ
+    Character player = playerDataStorage -> loadPlayerData( username );  // è¼‰å…¥çŽ©å®¶è³‡æ–™
     
     if ( player.getName() == "" ) {
         cout << "Account does not exist" << endl;
         return false;
     } // end if
 
-    // °²³]§Ú­Ì¥u¬OÅçÃÒ±K½X¡A¦ý³o¸Ì¬OÂ²¤Æªº½d¨Ò
+    // å‡è¨­æˆ‘å€‘åªæ˜¯é©—è­‰å¯†ç¢¼ï¼Œä½†é€™è£¡æ˜¯ç°¡åŒ–çš„ç¯„ä¾‹
     if ( password == player.getPassword() ) {
         cout << "Login successful~" << endl;
         return true;

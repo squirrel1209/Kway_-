@@ -4,14 +4,14 @@ void battle( Player& player, Monster& monster ) {
 
         player.attack( monster );
         if ( monster.getMoney() <= 0 ) {
-            cout << "§A¥´±Ñ¤F©Çª«¡I" << endl;
+            cout << "ä½ æ‰“æ•—äº†æ€ªç‰©ï¼" << endl;
             player.addMoney(100);
             return;
         } // end if
 
         monster.attack( player );
         if ( player.getMoney() <= 0 ) {
-            cout << "§A³Q©Çª«¥´±Ñ¤F..." << endl;
+            cout << "ä½ è¢«æ€ªç‰©æ‰“æ•—äº†..." << endl;
             return;
         } // end if
     } // end while

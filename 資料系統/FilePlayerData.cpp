@@ -2,32 +2,32 @@
 
 
 void FilePlayerData::savePlayerData( const Character& player )  {
-    ofstream file( player.getName() + ".txt" );  // ¥Hª±®a¦WºÙ©R¦WÀÉ®×
+    ofstream file( player.getName() + ".txt" );  // ä»¥ç©å®¶åç¨±å‘½åæª”æ¡ˆ
     if ( file.is_open() ) {
-        file << player.toString();  // Àx¦sª±®a¸ê®Æ
+        file << player.toString();  // å„²å­˜ç©å®¶è³‡æ–™
         file.close();
     } // end if
     
     else {
-        cout << "µLªkÀx¦s¸ê®Æ¡I" << endl;
+        cout << "ç„¡æ³•å„²å­˜è³‡æ–™ï¼" << endl;
     } // end else
 } // end savePlayerData()
 
 Character FilePlayerData::loadPlayerData( const string& username )  {
-    ifstream file( username + ".txt" );  // ®Ú¾Ú¥Î¤á¦WºÙÅª¨úÀÉ®×
+    ifstream file( username + ".txt" );  // æ ¹æ“šç”¨æˆ¶åç¨±è®€å–æª”æ¡ˆ
     stringstream ss;
     string line;
     if ( file.is_open() ) {
         while ( getline( file, line ) ) {
-            ss << line << "\n";  // §âÀÉ®×¸ê®Æ¥[¶i stringstream
+            ss << line << "\n";  // æŠŠæª”æ¡ˆè³‡æ–™åŠ é€² stringstream
         } // end while
     
         file.close();
-        return Character::fromString( ss.str() );  // ¤Ï§Ç¦C¤Æ¸ê®Æ¨Ãªğ¦^ª±®aª«¥ó
+        return Character::fromString( ss.str() );  // ååºåˆ—åŒ–è³‡æ–™ä¸¦è¿”å›ç©å®¶ç‰©ä»¶
     } // end if 
     
     else {
-        cout << "ª±®a¸ê®ÆÀÉ®×¤£¦s¦b¡I" << endl;
-        return Character();  // ¦pªGÀÉ®×¤£¦s¦b¡Aªğ¦^¤@­ÓªÅªº Character
+        cout << "ç©å®¶è³‡æ–™æª”æ¡ˆä¸å­˜åœ¨ï¼" << endl;
+        return Character();  // å¦‚æœæª”æ¡ˆä¸å­˜åœ¨ï¼Œè¿”å›ä¸€å€‹ç©ºçš„ Character
     } // end else
 } // end loadPlayerData

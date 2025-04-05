@@ -1,25 +1,25 @@
 int main() {
     LoginSystem login;
     Shop shop;
-    shop.addItem(new Weapon("ªø¼C", 100, 15));
-    shop.addItem(new Armor("ÅK¥Ò", 50, 5));
+    shop.addItem(new Weapon("é•·åŠ", 100, 15));
+    shop.addItem(new Armor("éµç”²", 50, 5));
 
     int choice;
     string username, password;
 
-    cout << "1. µù¥U  2. µn¤J  3. Â÷¶}" << endl;
+    cout << "1. è¨»å†Š  2. ç™»å…¥  3. é›¢é–‹" << endl;
     cin >> choice;
 
     if (choice == 1) {
-        cout << "¿é¤J¨Ï¥ÎªÌ¦WºÙ: ";
+        cout << "è¼¸å…¥ä½¿ç”¨è€…åç¨±: ";
         cin >> username;
-        cout << "¿é¤J±K½X: ";
+        cout << "è¼¸å…¥å¯†ç¢¼: ";
         cin >> password;
         login.registerUser(username, password);
     } else if (choice == 2) {
-        cout << "¿é¤J¨Ï¥ÎªÌ¦WºÙ: ";
+        cout << "è¼¸å…¥ä½¿ç”¨è€…åç¨±: ";
         cin >> username;
-        cout << "¿é¤J±K½X: ";
+        cout << "è¼¸å…¥å¯†ç¢¼: ";
         cin >> password;
         if (!login.loginUser(username, password)) return 0;
     } else {
@@ -27,18 +27,18 @@ int main() {
     }
 
     Player player(username);
-    Monster monster("­ô¥¬ªL", 1, 50, 50);
-    Quest quest("¥´±Ñ 1 °¦­ô¥¬ªL", 100);
+    Monster monster("å“¥å¸ƒæ—", 1, 50, 50);
+    Quest quest("æ‰“æ•— 1 éš»å“¥å¸ƒæ—", 100);
 
     while (true) {
-        cout << "1. ¾Ô°«  2. °Ó©±  3. ¥ô°È  4. °h¥X" << endl;
+        cout << "1. æˆ°é¬¥  2. å•†åº—  3. ä»»å‹™  4. é€€å‡º" << endl;
         cin >> choice;
 
         if (choice == 1) {
             battle(player, monster);
         } else if (choice == 2) {
             shop.showItems();
-            cout << "¿ï¾Ü­nÁÊ¶Rªºª««~ (¿é¤J 0 ¨ú®ø): ";
+            cout << "é¸æ“‡è¦è³¼è²·çš„ç‰©å“ (è¼¸å…¥ 0 å–æ¶ˆ): ";
             int itemIndex;
             cin >> itemIndex;
             if (itemIndex > 0) shop.buyItem(player, itemIndex);
@@ -50,4 +50,3 @@ int main() {
     }
     return 0;
 }
-
