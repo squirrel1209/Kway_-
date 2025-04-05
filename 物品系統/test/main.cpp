@@ -5,20 +5,20 @@
 
 int main() {
 
-    // å‰µå»ºä¸€å€‹ ItemSystem ç‰©ä»¶ï¼Œæœƒè‡ªå‹•åŠ è¼‰ç‰©å“è³‡æ–™
+    // ³Ğ«Ø¤@­Ó ItemSystem ª«¥ó¡A·|¦Û°Ê¥[¸üª««~¸ê®Æ
     ItemSystem itemSystem;
 
-    // æ ¹æ“šç‰©å“IDå‰µå»ºå¤šå€‹ç‰©å“å¯¦ä¾‹
+    // ®Ú¾Úª««~ID³Ğ«Ø¦h­Óª««~¹ê¨Ò
     Item* sword = itemSystem.createItem( "sword_iron" );
     Item* axe = itemSystem.createItem( "axe_steel" );
     Item* dragonSword = itemSystem.createItem( "sword_dragon" );
     Item* longBow = itemSystem.createItem( "bow_long" );
     Item* giantHammer = itemSystem.createItem( "hammer_giant" );
 
-    // æ¸¬è©¦ç‰©å“çš„è³‡æ–™æ˜¯å¦æ­£ç¢º
+    // ´ú¸Õª««~ªº¸ê®Æ¬O§_¥¿½T
     if ( sword != nullptr ) {
         std::cout << "Created Item: " << sword -> getInfo().name << std::endl;
-        sword -> print(); // é¡¯ç¤ºç‰©å“è©³ç´°è³‡è¨Š
+        sword -> print(); // Åã¥Üª««~¸Ô²Ó¸ê°T
     } // end if 
     
     else {
@@ -27,7 +27,7 @@ int main() {
 
     if ( axe != nullptr ) {
         std::cout << "Created Item: " << axe->getInfo().name << std::endl;
-        axe->print(); // é¡¯ç¤ºç‰©å“è©³ç´°è³‡è¨Š
+        axe->print(); // Åã¥Üª««~¸Ô²Ó¸ê°T
     } // end if 
     
     else {
@@ -36,7 +36,7 @@ int main() {
 
     if ( dragonSword != nullptr ) {
         std::cout << "Created Item: " << dragonSword->getInfo().name << std::endl;
-        dragonSword->print(); // é¡¯ç¤ºç‰©å“è©³ç´°è³‡è¨Š
+        dragonSword->print(); // Åã¥Üª««~¸Ô²Ó¸ê°T
     } // end if 
     
     else {
@@ -45,7 +45,7 @@ int main() {
 
     if ( longBow != nullptr ) {
         std::cout << "Created Item: " << longBow->getInfo().name << std::endl;
-        longBow->print(); // é¡¯ç¤ºç‰©å“è©³ç´°è³‡è¨Š
+        longBow->print(); // Åã¥Üª««~¸Ô²Ó¸ê°T
     } // end if
     
     else {
@@ -54,14 +54,14 @@ int main() {
 
     if ( giantHammer != nullptr ) {
         std::cout << "Created Item: " << giantHammer->getInfo().name << std::endl;
-        giantHammer->print(); // é¡¯ç¤ºç‰©å“è©³ç´°è³‡è¨Š
+        giantHammer->print(); // Åã¥Üª««~¸Ô²Ó¸ê°T
     } // end if 
     
     else {
         std::cout << "Item 'hammer_giant' not found." << std::endl;
     } // end else
 
-    // æ¸…ç†è¨˜æ†¶é«”
+    // ²M²z°O¾ĞÅé
     delete sword;
     delete axe;
     delete dragonSword;
@@ -71,3 +71,4 @@ int main() {
     system( "pause" );
     return 0;
 }
+
