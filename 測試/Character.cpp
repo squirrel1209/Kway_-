@@ -3,14 +3,14 @@
 Character::Character() : name(""), password(""), level(1), hp(100), money(500) {}
 
 void Character::showStatus() const {
-    cout << "ª±®a: " << name << " | µ¥¯Å: " << level << " | HP: " << hp << " | ª÷¿ú: " << money << endl;
+    cout << "çŽ©å®¶: " << name << " | ç­‰ç´š: " << level << " | HP: " << hp << " | é‡‘éŒ¢: " << money << endl;
 } // end showStatus()
 
 string Character::toString() const {
     return name + "\n" + password + "\n" + to_string( level ) + "\n" + to_string( hp ) + "\n" + to_string( money ) + "\n";
 } // end toString()
 
-// ±q¦r¦ê¤¤¸ÑªR¥Xª±®a¸ê®Æ¡]¤Ï§Ç¦C¤Æ¡^
+// å¾žå­—ä¸²ä¸­è§£æžå‡ºçŽ©å®¶è³‡æ–™ï¼ˆååºåˆ—åŒ–ï¼‰
 Character Character::fromString( const string& data ) {
     size_t pos1 = data.find( "\n" );
     string name = data.substr( 0, pos1 );

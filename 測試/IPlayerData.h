@@ -1,10 +1,10 @@
 class IPlayerData {
-public:
-    // Àx¦sª±®a¸ê®Æ
-    virtual void savePlayerData( const Character& player ) = 0;
+    public:
+        // å„²å­˜ç©å®¶è³‡æ–™
+        virtual void savePlayerData( const Character& player ) = 0;
+        
+        // è®€å–ç©å®¶è³‡æ–™
+        virtual Character loadPlayerData( const string& username ) = 0;
+        virtual ~IPlayerData() = default;
+    };
     
-    // Åª¨úª±®a¸ê®Æ
-    virtual Character loadPlayerData( const string& username ) = 0;
-    virtual ~IPlayerData() = default;
-};
-

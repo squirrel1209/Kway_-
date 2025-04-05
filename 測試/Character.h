@@ -1,5 +1,5 @@
-#ifndef CHARACTER_H   // ¦pªG CHARACTER_H ©|¥¼©w¸q¡A«h°õ¦æ¤U­±ªº¤º®e
-#define CHARACTER_H   // ©w¸q CHARACTER_H¡A¨¾¤î­«½Æ©w¸q
+#ifndef CHARACTER_H   // å¦‚æœ CHARACTER_H å°šæœªå®šç¾©ï¼Œå‰‡åŸ·è¡Œä¸‹é¢çš„å…§å®¹
+#define CHARACTER_H   // å®šç¾© CHARACTER_Hï¼Œé˜²æ­¢é‡è¤‡å®šç¾©
 
 #include <iostream>
 #include <string>
@@ -21,20 +21,20 @@ public:
         
 
 
-    // Åã¥Üª±®aª¬ºA
+    // é¡¯ç¤ºç©å®¶ç‹€æ…‹
     void showStatus() const ;
     
-    // ¨ú±oª±®a¦W¦r 
+    // å–å¾—ç©å®¶åå­— 
     string getName() const { return name; }
     
-    // ¨ú±oª±®a±K½X
+    // å–å¾—ç©å®¶å¯†ç¢¼
     string getPassword() const { return password; }
     
-    // Âà´«¦¨¥iÀx¦sªº®æ¦¡¡]§Ç¦C¤Æ¡^
+    // è½‰æ›æˆå¯å„²å­˜çš„æ ¼å¼ï¼ˆåºåˆ—åŒ–ï¼‰
     string toString() const ;
     
-    // ±q¦r¦ê¤¤¸ÑªR¥Xª±®a¸ê®Æ¡]¤Ï§Ç¦C¤Æ¡^
+    // å¾å­—ä¸²ä¸­è§£æå‡ºç©å®¶è³‡æ–™ï¼ˆååºåˆ—åŒ–ï¼‰
     static Character fromString( const string& data );
     
 }; 
-#endif // CHARACTER_H   // µ²§ô±ø¥ó¡A¨¾¤î­«½Æ¥]§t
+#endif // CHARACTER_H   // çµæŸæ¢ä»¶ï¼Œé˜²æ­¢é‡è¤‡åŒ…å«

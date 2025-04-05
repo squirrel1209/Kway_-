@@ -1,28 +1,28 @@
 #include "LoginSystem.h"
 
 int main() {
-    FilePlayerData fileStorage;  // ¨Ï¥ÎÀÉ®×Àx¦s¤è¦¡
+    FilePlayerData fileStorage;  // ä½¿ç”¨æª”æ¡ˆå„²å­˜æ–¹å¼
     LoginSystem loginSystem(&fileStorage);
 
     string username, password;
 
 
-    cout << "1. µù¥U  2. µn¤J  3. Â÷¶}" << endl;
+    cout << "1. è¨»å†Š  2. ç™»å…¥  3. é›¢é–‹" << endl;
     int choice;
     cin >> choice;
 
     if ( choice == 1 ) {
-        cout << "¿é¤J¨Ï¥ÎªÌ¦WºÙ: ";
+        cout << "è¼¸å…¥ä½¿ç”¨è€…åç¨±: ";
         cin >> username;
-        cout << "¿é¤J±K½X: ";
+        cout << "è¼¸å…¥å¯†ç¢¼: ";
         cin >> password;
         loginSystem.registerUser( username, password);
     } // end if
     
     else if ( choice == 2 )  {
-        cout << "¿é¤J¨Ï¥ÎªÌ¦WºÙ: ";
+        cout << "è¼¸å…¥ä½¿ç”¨è€…åç¨±: ";
         cin >> username;
-        cout << "¿é¤J±K½X: ";
+        cout << "è¼¸å…¥å¯†ç¢¼: ";
         cin >> password;
         if ( !loginSystem.loginUser( username, password ) ) return 0;
     } 
@@ -31,7 +31,7 @@ int main() {
         return 0;
     }
 
-    // µn¤J«á¥i¥H¾Ş§@ª±®a¸ê®Æ
+    // ç™»å…¥å¾Œå¯ä»¥æ“ä½œç©å®¶è³‡æ–™
     Character player = fileStorage.loadPlayerData(username);
     player.showStatus();
 
