@@ -1,5 +1,5 @@
 
 void Quest::completeQuest( Player& player ) {
-    cout << "¥ô°È§¹¦¨¡G" << description << "¡IÀò±o¼úÀy " << reward << " ª÷¹ô¡I" << endl;
+    cout << "ä»»å‹™å®Œæˆï¼š" << description << "ï¼ç²å¾—çŽå‹µ " << reward << " é‡‘å¹£ï¼" << endl;
     player.addMoney( reward );
 } // end completeQuest()
