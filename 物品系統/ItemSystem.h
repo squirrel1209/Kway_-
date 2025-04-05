@@ -21,6 +21,8 @@ public:
     // 建構子：傳入物品資料並初始化
     Item( const ItemInfo& data );
 
+    bool operator==( const Item& other ) const; //  比較運算子重載，用於判斷兩個物件是否相等
+
     // 取得物品靜態資料
     const ItemInfo& getInfo() const;
 

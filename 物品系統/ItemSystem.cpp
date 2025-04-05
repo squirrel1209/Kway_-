@@ -2,6 +2,12 @@
 
 Item::Item( const ItemInfo& data ) : info( data ) {}
 
+bool Item::operator==( const Item& other ) const {
+    return info.id == other.info.id && info.name == other.info.name &&
+              info.description == other.info.description &&
+              info.price == other.info.price && info.attack == other.info.attack; // 比較物品的靜態資料是否相等
+} // end operator==()
+
 // 取得物品的靜態資料
 const ItemInfo& Item::getInfo() const {
     return info; // 返回物品的靜態資料
