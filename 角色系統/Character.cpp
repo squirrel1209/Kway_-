@@ -1,32 +1,56 @@
 #include "Character.h"
 
-Character::Character() : name(""), password(""), level(1), hp(100), money(500) {}
+Character::Character() : name(""), password(""), level(1), hp(100), money(500), attackPower( 10 ), inventory( 20 ) {}
 
 void Character::showStatus() const {
-    cout << "玩家: " << name << " | 等級: " << level << " | HP: " << hp << " | 金錢: " << money << endl;
+    cout << "玩家: " << name << " | 等級: " << level << " | HP: " << hp << " | 金錢: " << money << " | 攻擊力: " << attackPower << endl;
 } // end showStatus()
 
 string Character::toString() const {
-    return name + "\n" + password + "\n" + to_string( level ) + "\n" + to_string( hp ) + "\n" + to_string( money ) + "\n";
+    std::string data = name + "\n" + password + "\n" +
+                       std::to_string( level ) + "\n" +
+                       std::to_string( hp ) + "\n" +
+                       std::to_string( money ) + "\n" +
+                       std::to_string( attackPower ) + "\n";
+
+    data += inventory.serialize();  // 將背包資料接在後面
+    return data;
 } // end toString()
 
 // 從字串中解析出玩家資料（反序列化）
 Character Character::fromString( const string& data ) {
-    size_t pos1 = data.find( "\n" );
-    string name = data.substr( 0, pos1 );
+    std::istringstream iss(data);  // 用字串串流處理每一行資料
 
-    size_t pos2 = data.find( "\n", pos1 + 1 );
-    string password = data.substr( pos1 + 1, pos2 - pos1 - 1 );
+    std::string name, password;
+    int level, hp, money, attackPower;
 
-    size_t pos3 = data.find( "\n", pos2 + 1 );
-    int level = stoi( data.substr( pos2 + 1, pos3 - pos2 - 1 ) );
+    // 一行一行讀取資料
+    std::getline(iss, name);
+    std::getline(iss, password);
+    iss >> level;      iss.ignore();
+    iss >> hp;         iss.ignore();
+    iss >> money;      iss.ignore();
+    iss >> attackPower;iss.ignore();
 
-    size_t pos4 = data.find( "\n", pos3 + 1 );
-    int hp = stoi( data.substr( pos3 + 1, pos4 - pos3 - 1 ) );
+    // 讀取剩下的資料作為背包內容
+    std::string inventoryData;
+    std::getline(iss, inventoryData, '\0');  // 把剩下的所有文字都抓進來
 
-    int money = stoi( data.substr( pos4 + 1 ) );
+    Inventory inv;
+    inv.deserialize(inventoryData, itemSystem);  // 利用 ItemSystem 重建背包內容
 
-    return Character( name, password, level, hp, money );
+    Character ch(name, password, level, hp, money, attackPower);
+    ch.setInventory(inv);  // 指定背包
+
+    return ch;
 } // end fromString()
 
-void Character::takeDamage( int dmg ) { hp -= dmg; if (hp < 0) hp = 0; }
+// 設定背包
+void Character::setInventory( const Inventory& inv ) {
+    inventory = inv;
+}
+
+// 取得背包
+const Inventory& Character::getInventory() const {
+    return inventory;
+}
