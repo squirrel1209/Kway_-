@@ -24,4 +24,11 @@ bool removeItem( const std::string& itemId, int quantity = 1 );
 
 // 顯示背包中的所有物品及其數量
 void showInventory() const;
+
+
+// 序列化背包資料
+std::string serialize() const;
+
+// 反序列化背包資料
+bool deserialize(const std::string& data, ItemSystem& itemSystem);  
 };
