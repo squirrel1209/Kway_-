@@ -41,8 +41,15 @@ bool Inventory::removeItem( const std::string& itemId, int quantity ) {
     return false;
 } // end removeItem()
 
-void showInventory() const {
+void Inventory::showInventory() const {
     for ( const auto& pair : items ) {
-        std::cout << pair.second.item -> print() << ": " << pair.second.quantity << std::endl;
+        if ( pair.second.item != nullptr ) {
+            pair.second.item -> print();  // 呼叫 Item 的 printf()
+            std::cout << " 數量: " << pair.second.quantity << std::endl;
+        } // end if
+        
+        else {
+            std::cout << "未知物品 ID: " << pair.first << " 數量: " << pair.second.quantity << std::endl;
+        } // end else
     } // end for
-}
+} // end showInventory()
