@@ -16,7 +16,7 @@ int main() {
         cin >> username;
         cout << "輸入密碼: ";
         cin >> password;
-        loginSystem.registerUser( username, password);
+        loginSystem.registerUser( username, password );
     } // end if
     
     else if ( choice == 2 )  {

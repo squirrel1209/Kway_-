@@ -8,7 +8,7 @@ int main() {
     FilePlayerData filePlayerData;
 
     // 創建角色並添加物品到背包
-    Character player("Player1", "password123", 1, 100, 500, 10, 20);
+    Character player( "Player1", "password123", 1, 100, 500, 10, 20 );
     player.showStatus();
     
     Item* sword = itemSystem.createItem( "sword_iron" );
@@ -31,8 +31,8 @@ int main() {
     // 從字串中創建角色並恢復背包資料
     Character loadedPlayer = filePlayerData.loadPlayerData( player.getName() ); // 從檔案讀取角色資料
     std::cout << "載入的角色資料：" << std::endl;
-    
-    
+
+
 
     loadedPlayer.showStatus();
 

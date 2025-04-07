@@ -1,0 +1,3 @@
+Character ━━▶ Inventory ━━▶ Item
+                     │
+                     └── contains → InventoryItem（結構）
