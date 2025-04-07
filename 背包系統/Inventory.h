@@ -1,8 +1,7 @@
 #pragma once
 #include "ItemSystem.h"
 #include <unordered_map>
-
-ItemSystem itemSystem; // 全域變數，(之後要修改)
+#include <sstream>
 
 struct InventoryItem {
     Item* item;   // 指向物品實例
@@ -32,6 +31,6 @@ void showInventory() const;
 // 序列化背包資料
 std::string serialize() const;
 
-// 反序列化背包資料                         // 此物件我先宣告成全域變數
-bool deserialize( const std::string& data, ItemSystem& itemSystem );  
+// 反序列化背包資料
+bool deserialize(const std::string& data );  
 };

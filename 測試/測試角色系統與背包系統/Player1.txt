@@ -1,0 +1,7 @@
+Player1
+password123
+1
+100
+500
+10
+sword_iron,2

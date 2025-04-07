@@ -68,10 +68,11 @@ std::string Inventory::serialize() const {
 } // end serialize()
 
 // Inventory 類別的反序列化函式：將字串形式的資料還原為物品與數量，並加入玩家背包中
-bool Inventory::deserialize( const std::string& data, ItemSystem& itemSystem ) {
+bool Inventory::deserialize( const std::string& data ) {
     // 使用 istringstream 來處理整段資料的輸入串流
     std::istringstream iss( data );
     std::string line;
+    ItemSystem itemSystem;
 
     // 一行一行地讀取資料（每行代表一個物品）
     while ( std::getline( iss, line ) ) {

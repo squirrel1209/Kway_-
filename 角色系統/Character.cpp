@@ -3,10 +3,10 @@
 Character::Character() : name(""), password(""), level(1), hp(100), money(500), attackPower( 10 ), inventory( 20 ) {}
 
 void Character::showStatus() const {
-    cout << "玩家: " << name << " | 等級: " << level << " | HP: " << hp << " | 金錢: " << money << " | 攻擊力: " << attackPower << endl;
+    std::cout << "玩家: " << name << " | 等級: " << level << " | HP: " << hp << " | 金錢: " << money << " | 攻擊力: " << attackPower << std::endl;
 } // end showStatus()
 
-string Character::toString() const {
+std::string Character::toString() const {
     std::string data = name + "\n" + password + "\n" +
                        std::to_string( level ) + "\n" +
                        std::to_string( hp ) + "\n" +
@@ -18,8 +18,8 @@ string Character::toString() const {
 } // end toString()
 
 // 從字串中解析出玩家資料（反序列化）
-Character Character::fromString( const string& data ) {
-    std::istringstream iss(data);  // 用字串串流處理每一行資料
+Character Character::fromString( const std::string& data ) {
+    std::istringstream iss( data );  // 用字串串流處理每一行資料
 
     std::string name, password;
     int level, hp, money, attackPower;
@@ -37,7 +37,7 @@ Character Character::fromString( const string& data ) {
     std::getline(iss, inventoryData, '\0');  // 把剩下的所有文字都抓進來
 
     Inventory inv;
-    inv.deserialize(inventoryData, itemSystem);  // 利用 ItemSystem 重建背包內容
+    inv.deserialize( inventoryData );  // 利用 ItemSystem 重建背包內容
 
     Character ch(name, password, level, hp, money, attackPower);
     ch.setInventory(inv);  // 指定背包
@@ -50,7 +50,7 @@ void Character::setInventory( const Inventory& inv ) {
     inventory = inv;
 }
 
-// 取得背包
-const Inventory& Character::getInventory() const {
+// 取得背包，測試用
+Inventory& Character::getInventory() {
     return inventory;
 }

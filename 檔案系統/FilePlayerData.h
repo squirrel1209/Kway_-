@@ -7,5 +7,5 @@
 class FilePlayerData : public IPlayerData {
 public:
     void savePlayerData( const Character& player ) override ;
-    Character loadPlayerData( const string& username ) override;
+    Character loadPlayerData( const std::string& username ) override;
 }; // end FilePlayerData()

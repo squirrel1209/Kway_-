@@ -2,21 +2,21 @@
 
 
 void FilePlayerData::savePlayerData( const Character& player )  {
-    ofstream file( player.getName() + ".txt" );  // 以玩家名稱命名檔案
+    std::ofstream file( player.getName() + ".txt" );  // 以玩家名稱命名檔案
     if ( file.is_open() ) {
         file << player.toString();  // 儲存玩家資料
         file.close();
     } // end if
     
     else {
-        cout << "無法儲存資料！" << endl;
+        std::cout << "無法儲存資料！" << std::endl;
     } // end else
 } // end savePlayerData()
 
-Character FilePlayerData::loadPlayerData( const string& username )  {
-    ifstream file( username + ".txt" );  // 根據用戶名稱讀取檔案
-    stringstream ss;
-    string line;
+Character FilePlayerData::loadPlayerData( const std::string& username )  {
+    std::ifstream file( username + ".txt" );  // 根據用戶名稱讀取檔案
+    std::stringstream ss;
+    std::string line;
     if ( file.is_open() ) {
         while ( getline( file, line ) ) {
             ss << line << "\n";  // 把檔案資料加進 stringstream
@@ -27,7 +27,7 @@ Character FilePlayerData::loadPlayerData( const string& username )  {
     } // end if 
     
     else {
-        cout << "玩家資料檔案不存在！" << endl;
+        std::cout << "玩家資料檔案不存在！" << std::endl;
         return Character();  // 如果檔案不存在，返回一個空的 Character
     } // end else
 } // end loadPlayerData

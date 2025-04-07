@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "Inventory.h"
 
+//ItemSystem itemSystem; // 全域變數，(之後要修改)
 
 class Character {
 protected:
@@ -17,6 +19,8 @@ protected:
     Inventory inventory;      // 背包（包含持有物品）
 
 public:
+    void showPlayInventory() const { inventory.showInventory(); } // 顯示背包物品
+
     Character();
     Character( const std::string& name, const std::string& password, int level = 1, int hp = 100, int money = 500, int attackPower = 10 ,int maxSlots = 20 ) 
         : name( name ), password( password ),  level( level ), hp( hp ), money( money ), attackPower( attackPower ), inventory( maxSlots ) {}
@@ -25,20 +29,24 @@ public:
     void showStatus() const ;
     
     // 取得玩家名字 
-    string getName() const { return name; }
+    std::string getName() const { return name; }
     
     // 取得玩家密碼
-    string getPassword() const { return password; }
+    std::string getPassword() const { return password; }
     
     // 轉換成可儲存的格式（序列化）
-    string toString() const ;
+    std::string toString() const ;
     
     // 從字串中解析出玩家資料（反序列化）
-    static Character fromString( const string& data );
-    
+    static Character fromString( const std::string& data );
+
     
     // 存取背包物件
-    const Inventory& getInventory() const;
+    //const Inventory& getInventory() const;
+
+    // 測試用
+    Inventory& getInventory();
+
     void setInventory( const Inventory& inventory );
     
 };
