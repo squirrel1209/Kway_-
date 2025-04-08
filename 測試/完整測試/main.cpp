@@ -1,17 +1,19 @@
 #include <iostream>
-/*
+
 #include "Character.h"
-#include "ItemSystem.h"
+//#include "ItemSystem.h"
 #include "FilePlayerData.h"
-#include "Inventory.h"
-#include "Shop.h"
+//#include "Inventory.h"
+//#include "Shop.h"
 #include "LoginSystem.h"
-*/
+
 
 using namespace std;
 int main() {
-    //LoginSystem login;  // 登入系統
-  
+    FilePlayerData fileStorage; // 使用檔案儲存方式
+    LoginSystem loginSystem( &fileStorage );  // 登入系統
+
+
     int choice;
     string username, password;
 
@@ -28,7 +30,7 @@ int main() {
     cin >> choice;
 
 
-    while ( choice ) {
+    while ( true ) {
         switch ( choice ) {
             case 1: {
                 cout << "------------------------------" << endl;
@@ -37,7 +39,7 @@ int main() {
                 cin >> username;
                 cout << "請輸入密碼: ";
                 cin >> password;
-                //login.registerUser(username, password);
+                login.registerUser(username, password);
             } // end case 1
 
             case 2: {
