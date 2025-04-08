@@ -1,9 +1,9 @@
 #include <iostream>
 
 #include "Character.h"
-//#include "ItemSystem.h"
-#include "FilePlayerData.h"
-//#include "Inventory.h"
+#include "ItemSystem.h"
+//#include "FilePlayerData.h"
+#include "Inventory.h"
 //#include "Shop.h"
 #include "LoginSystem.h"
 
@@ -39,7 +39,7 @@ int main() {
                 cin >> username;
                 cout << "請輸入密碼: ";
                 cin >> password;
-                login.registerUser(username, password);
+                loginSystem.registerUser(username, password);
             } // end case 1
 
             case 2: {
@@ -50,7 +50,7 @@ int main() {
                 cout << "請輸入密碼: ";
                 cin >> password;
 
-                if ( !login.loginUser( username, password ) ) {
+                if ( !loginSystem.loginUser( username, password ) ) {
                     cout << "登入失敗，請檢查使用者名稱或密碼。" << endl;
                     cout << "請重新輸入選項 (1-3): ";
                     cin >> choice;
@@ -77,7 +77,8 @@ int main() {
         } // end switch
     } // end while
 
-
+    Character player = fileStorage.loadPlayerData( username );
+    player.showStatus();
     
     system( "pause" );
 } // end main()
