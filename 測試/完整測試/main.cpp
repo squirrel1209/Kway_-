@@ -2,7 +2,7 @@
 #include "Character.h"
 #include "ItemSystem.h"
 #include "Inventory.h"
-//#include "Shop.h"
+#include "Shop.h"
 #include "LoginSystem.h"
 
 using namespace std;
@@ -12,11 +12,13 @@ void handleRegistration( LoginSystem& loginSystem );
 bool handleLogin( LoginSystem& loginSystem, std::string& username, std::string& password );
 void showMainMenu( Character& player );
 void handleCombat();
-void handleShop();
+void handleShop( Shop& shop  );
 void handleQuest();
 
 int main() {
     FilePlayerData fileStorage; // 使用檔案儲存方式
+    ItemSystem itemSystem; // 物品系統
+    Shop shop( itemSystem ); // 商店系統
     LoginSystem loginSystem( &fileStorage );  // 登入系統
 
     int choice;
@@ -167,9 +169,37 @@ void handleCombat() {
     // 這裡可以加入戰鬥邏輯
 } // end handleCombat()
 
-void handleShop() {
+void handleShop( Shop& shop, Character& player ) {
     std::cout << "進入商店..." << std::endl;
     // 這裡可以加入商店邏輯
+
+    std::cout << "\n== 玩家初始狀態 ==" << std::endl;
+    player.showStatus();
+    player.showPlayInventory();
+
+    std::cout << "\n== 商店販售的物品 ==" << std::endl;
+    shop.showItems();
+
+    std::cout << "\n== 玩家購買 Iron Sword ==" << std::endl;
+    shop.buyItem(player, "sword01");
+
+    std::cout << "\n== 玩家購買 Health Potion ==" << std::endl;
+    shop.buyItem(player, "potion01");
+
+    std::cout << "\n== 玩家狀態（購買後） ==" << std::endl;
+    player.showStatus();
+    player.showPlayInventory();
+
+    std::cout << "\n== 玩家販售 Iron Sword ==" << std::endl;
+
+    // 從背包取出第一個物品來賣
+    if (!player.getInventory().items.empty()) {
+        shop.sellItem(player, player.getInventory().items[0]);
+    }
+
+    std::cout << "\n== 玩家狀態（販售後） ==" << std::endl;
+    player.showStatus();
+    player.showPlayInventory();
 } // end handleShop()
 
 void handleQuest() {
