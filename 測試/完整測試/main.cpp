@@ -36,6 +36,9 @@ int main() {
 
             case 2: {
                 if ( handleLogin( loginSystem, username, password ) ) {
+                    // 登入成功，清空命令行畫面
+                    system( "cls" );
+
                     // 登入成功，顯示遊戲主畫面
                     Character player = fileStorage.loadPlayerData( username );
                     player.showStatus();  // 顯示角色資訊
@@ -71,7 +74,7 @@ int main() {
 } // end main
 
 void showLoginMenu() {
-    std::cout << "==============================" << std::endl;
+    std::cout << std::endl << "==============================" << std::endl;
     std::cout << "         遊戲登入系統         " << std::endl;
     std::cout << "==============================" << std::endl;
     std::cout << "          1. 註冊" << std::endl;
@@ -122,18 +125,24 @@ void showMainMenu( Character &player ) {
         std::cout << "請輸入選項 (1-4): ";
         std::cin >> choice;
 
-        switch (choice) {
+        switch ( choice ) {
             case 1: {
+                // 登入成功，清空命令行畫面
+                system( "cls" );
                 handleCombat();
                 break;
             } // 戰鬥
 
             case 2: {
+                // 登入成功，清空命令行畫面
+                system( "cls" );
                 handleShop();
                 break;
             } // 商店
 
             case 3: {
+                // 登入成功，清空命令行畫面
+                system( "cls" );
                 handleQuest();
                 break;
             } // 任務
