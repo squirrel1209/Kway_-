@@ -75,18 +75,7 @@ void Shop::buyItem( Character& player, const std::string& itemId ) {
     if ( it != itemSystem.itemDefinitions.end() ) {
         const ItemInfo& item = it->second;
         // 假設有方法處理購物邏輯
-
-        // 這裡可以加入檢查玩家金錢是否足夠的邏輯
-        if ( player.money < item.price ) {
-            std::cout << "金錢不足，無法購買 " << item.name << "。\n";
-        } // end if
-
-        else {
-            player.money -= item.price; // 扣除金錢
-            player.getInventory().addItem( itemId, 1 );
-            std::cout << player.getName() << " 購買了 " << item.name << "，價格為 " << item.price << "。\n";
-        } // end else
-        
+        std::cout << player.getName() << " 購買了 " << item.name << "，價格為 " << item.price << "。\n";
     } // end if
     
     else {
