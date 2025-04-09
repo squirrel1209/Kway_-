@@ -1,0 +1,1 @@
+g++ -o main.exe Character.o FilePlayerData.o Inventory.o ItemSystem.o LoginSystem.o main.o Shop.o

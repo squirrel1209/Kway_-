@@ -70,29 +70,23 @@ void Shop::showItems() const {
 }
 
 void Shop::buyItem( Character& player, const std::string& itemId ) {
-    auto it = itemSystem.itemDefinitions.find( itemId );
+    Item* item = itemSystem.createItem( itemId );
 
-    if ( it != itemSystem.itemDefinitions.end() ) {
-        const ItemInfo& item = it->second;
-        // 假設有方法處理購物邏輯
-
-        // 這裡可以加入檢查玩家金錢是否足夠的邏輯
-        if ( player.money < item.price ) {
-            std::cout << "金錢不足，無法購買 " << item.name << "。\n";
-        } // end if
-
-        else {
-            player.money -= item.price; // 扣除金錢
-            player.inventory.addItem( itemId, 1 );
-            player.showPlayInventory();
-            std::cout << player.getName() << " 購買了 " << item.name << "，價格為 " << item.price << "。\n";
-        } // end else
-        
+    if ( item == nullptr ) {
+            std::cout << "Item not found!" << std::endl;
+            return ;
     } // end if
-    
-    else {
-        std::cout << "找不到物品，請確認物品ID。\n";
-    } // end else
+
+    if ( player.money < item -> getInfo().price ) {
+        std::cout << "Not enough money!" << std::endl;
+        return ;
+    }
+
+    // 扣除金錢並添加物品到背包
+    player.money -= item -> getInfo().price;
+    player.getInventory().addItem( item, 1 );
+    std::cout << player.getName() << " 購買了 " << item -> getInfo().name << "，價格為 " << item -> getInfo().price << "。\n";
+    return ;
 } // end buyItem()
 
 void Shop::sellItem( Character& player, const Item& item ) {
