@@ -32,6 +32,8 @@ public:
 
 // 物品管理系統，負責物品的載入和創建
 class ItemSystem {
+    friend class Shop; // 設定 Shop 為友元類別，這樣Shop 就可以訪問 itemDefinitions
+
 private:
     std::unordered_map<std::string, ItemInfo> itemDefinitions;
 

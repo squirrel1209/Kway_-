@@ -175,6 +175,7 @@ void handleShop( Shop& shop, Character& player ) {
 
     std::cout << "\n== 玩家初始狀態 ==" << std::endl;
     player.showStatus();
+    std::cout << "\n== 玩家背包狀態 ==" << std::endl;
     player.showPlayInventory();
 
     shop.showItems();
@@ -194,6 +195,7 @@ void handleShop( Shop& shop, Character& player ) {
 
     std::cout << "\n== 玩家狀態（購買後） ==" << std::endl;
     player.showStatus();
+    std::cout << "\n== 玩家背包狀態 ==" << std::endl;
     player.showPlayInventory();
 
     /*

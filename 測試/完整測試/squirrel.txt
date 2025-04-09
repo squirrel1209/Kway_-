@@ -2,6 +2,8 @@ squirrel
 66666
 1
 100
-9999810
+9999490
 10
-giant_tree,1
+sword_dragon,1
+giant_tree,2
+bow_long,1

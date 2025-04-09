@@ -9,6 +9,8 @@
 //ItemSystem itemSystem; // 全域變數，(之後要修改)
 
 class Character {
+    friend class Shop;
+
 protected:
     std::string name;         // 玩家名稱
     std::string password;     // 密碼（簡化示範用，實際上不建議明文存儲）

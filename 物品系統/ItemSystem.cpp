@@ -63,6 +63,14 @@ ItemSystem::ItemSystem() {
     giantHammer.price = 150;
     giantHammer.attack = 40;
 
+    // 巨木
+    ItemInfo giantTree;
+    giantHammer.id = "giant_tree";
+    giantHammer.name = "巨木";
+    giantHammer.description = "千年神木超強攻擊並提供額外經驗。";
+    giantHammer.price = 190;
+    giantHammer.attack = 45;
+
     // 將物品資料存入物品定義（ID -> ItemInfo）
     itemDefinitions[sword.id] = sword;
     itemDefinitions[axe.id] = axe;

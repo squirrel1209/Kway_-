@@ -47,12 +47,14 @@ void Inventory::showInventory() const {
     for ( const auto& pair : items ) {
         if ( pair.second.item != nullptr ) {
             pair.second.item -> print();  // 呼叫 Item 的 printf()
-            std::cout << " 數量: " << pair.second.quantity << std::endl;
+            std::cout << "數量: " << pair.second.quantity << std::endl;
         } // end if
         
         else {
             std::cout << "未知物品 ID: " << pair.first << " 數量: " << pair.second.quantity << std::endl;
         } // end else
+
+        std::cout << "------------------------" << std::endl;
     } // end for
 } // end showInventory()
 

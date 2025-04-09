@@ -1,10 +1,10 @@
-#include "battle.cpp"
+#include "Quest.cpp"
 
-int main()
+int main() 
 {
     Player p;
-    Slime m(1);
-    battle(p,m);
-
+    Quest(p);
+    std::cout<<"WAIT\n";
+    Quest(p);
     return 0;
 }
