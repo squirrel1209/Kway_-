@@ -83,7 +83,8 @@ void Shop::buyItem( Character& player, const std::string& itemId ) {
 
         else {
             player.money -= item.price; // 扣除金錢
-            player.getInventory().addItem( itemId, 1 );
+            player.inventory.addItem( itemId, 1 );
+            player.showPlayInventory();
             std::cout << player.getName() << " 購買了 " << item.name << "，價格為 " << item.price << "。\n";
         } // end else
         

@@ -52,5 +52,5 @@ void Character::setInventory( const Inventory& inv ) {
 
 // 取得背包，測試用
 Inventory& Character::getInventory() {
-    return inventory;
+    return this -> inventory;
 }

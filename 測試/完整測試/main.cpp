@@ -10,7 +10,7 @@ using namespace std;
 void showLoginMenu();
 void handleRegistration( LoginSystem& loginSystem );
 bool handleLogin( LoginSystem& loginSystem, std::string& username, std::string& password );
-void showMainMenu( Shop &shop, Character& player );
+void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage );
 void handleCombat();
 void handleShop( Shop& shop, Character& player );
 void handleQuest();
@@ -44,7 +44,7 @@ int main() {
                     // 登入成功，顯示遊戲主畫面
                     Character player = fileStorage.loadPlayerData( username );
                     player.showStatus();  // 顯示角色資訊
-                    showMainMenu( shop, player );  // 顯示主遊戲選單
+                    showMainMenu( shop, player, fileStorage );  // 顯示主遊戲選單
                 } // end if
                 
                 else {
@@ -113,7 +113,7 @@ bool handleLogin( LoginSystem &loginSystem, std::string &username, std::string &
     return true;
 } // end handleLogin()
 
-void showMainMenu( Shop& shop, Character& player ) {
+void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage ) {
     int choice;
     while ( true ) {
         std::cout << "==============================" << std::endl;
@@ -152,6 +152,7 @@ void showMainMenu( Shop& shop, Character& player ) {
             case 4: {
                 std::cout << "感謝您的遊玩!" << std::endl;
                 std::cout << "遊戲結束!" << std::endl;
+                fileStorage.savePlayerData( player ); // 儲存玩家資料
                 exit( 0 );  // 結束程式
             } // 結束
 

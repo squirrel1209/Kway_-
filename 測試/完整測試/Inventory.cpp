@@ -38,7 +38,7 @@ bool Inventory::addItem( const std::string& id, int quantity ) {
                 return false;  // 如果找不到對應物品，返回 false
             }
 
-            items[id] = {item, quantity};  // 新增物品
+            items[id] = { item, quantity };  // 新增物品
         }
         return true;
     }

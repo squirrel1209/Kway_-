@@ -23,6 +23,28 @@ bool Inventory::addItem( Item* item, int quantity ) {
     return false;
 } // end addItem()
 
+// 向背包中添加物品（使用物品 ID 字串）
+bool Inventory::addItem( const std::string& id, int quantity ) {
+    if (items.size() < maxSlots) {
+        auto it = items.find(id);
+        if (it != items.end()) {
+            it->second.quantity += quantity;  // 更新數量
+        } else {
+            // 假設 id 已經對應到某個預定的 Item，你可以在這裡新增對應邏輯
+            // 例如，你可以建立一個 Item* item，根據 id 找到對應的物品資料
+            Item* item = getItemById(id);  // 假設 getItemById 是一個函數，根據 id 找到對應的物品
+
+            if (item == nullptr) {
+                return false;  // 如果找不到對應物品，返回 false
+            }
+
+            items[id] = {item, quantity};  // 新增物品
+        }
+        return true;
+    }
+    return false;
+} // end addItem()
+
 // 從背包中移除指定數量的物品
 bool Inventory::removeItem( const std::string& itemId, int quantity ) {
     auto it = items.find( itemId );
@@ -103,3 +125,13 @@ bool Inventory::deserialize( const std::string& data ) {
     // 所有物品成功加入背包，返回 true
     return true;
 } // end deserialize()
+
+
+Item* Inventory::getItemById(const std::string& id) {
+    auto it = items.find( id );
+    if ( it != items.end() ) {
+        return it -> second.item;  // 找到對應的物品，返回指標
+    } // end if
+
+    return nullptr;  // 如果找不到物品，返回 nullptr
+} // end getItemById()

@@ -21,6 +21,9 @@ Inventory(int max = 20);  // 建構函數，初始化背包的最大容量
 // 向背包中添加物品，如果物品已存在，則增加數量
 bool addItem( Item* item, int quantity = 1 );
 
+// 向背包中添加物品（使用物品 ID 字串）
+bool addItem( const std::string& id, int quantity );
+
 // 從背包中移除指定數量的物品
 bool removeItem( const std::string& itemId, int quantity = 1 );
 
@@ -33,4 +36,8 @@ std::string serialize() const;
 
 // 反序列化背包資料
 bool deserialize(const std::string& data );  
+
+
+// 假設 getItemById 是根據 ID 找到物品的函數
+Item* getItemById( const std::string& id );
 };
