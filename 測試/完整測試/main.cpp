@@ -10,9 +10,9 @@ using namespace std;
 void showLoginMenu();
 void handleRegistration( LoginSystem& loginSystem );
 bool handleLogin( LoginSystem& loginSystem, std::string& username, std::string& password );
-void showMainMenu( Character& player );
+void showMainMenu( Shop &shop, Character& player );
 void handleCombat();
-void handleShop( Shop& shop  );
+void handleShop( Shop& shop, Character& player );
 void handleQuest();
 
 int main() {
@@ -44,7 +44,7 @@ int main() {
                     // 登入成功，顯示遊戲主畫面
                     Character player = fileStorage.loadPlayerData( username );
                     player.showStatus();  // 顯示角色資訊
-                    showMainMenu( player );  // 顯示主遊戲選單
+                    showMainMenu( shop, player );  // 顯示主遊戲選單
                 } // end if
                 
                 else {
@@ -113,7 +113,7 @@ bool handleLogin( LoginSystem &loginSystem, std::string &username, std::string &
     return true;
 } // end handleLogin()
 
-void showMainMenu( Character &player ) {
+void showMainMenu( Shop& shop, Character& player ) {
     int choice;
     while ( true ) {
         std::cout << "==============================" << std::endl;
@@ -138,7 +138,7 @@ void showMainMenu( Character &player ) {
             case 2: {
                 // 登入成功，清空命令行畫面
                 system( "cls" );
-                handleShop();
+                handleShop( shop, player );
                 break;
             } // 商店
 
@@ -171,35 +171,41 @@ void handleCombat() {
 
 void handleShop( Shop& shop, Character& player ) {
     std::cout << "進入商店..." << std::endl;
-    // 這裡可以加入商店邏輯
 
     std::cout << "\n== 玩家初始狀態 ==" << std::endl;
     player.showStatus();
     player.showPlayInventory();
 
-    std::cout << "\n== 商店販售的物品 ==" << std::endl;
     shop.showItems();
 
-    std::cout << "\n== 玩家購買 Iron Sword ==" << std::endl;
-    shop.buyItem(player, "sword01");
+    std::string input;
+    while ( true ) {
+        std::cout << "\n輸入要購買的物品ID（輸入 q 離開商店）：";
+        std::cin >> input;
 
-    std::cout << "\n== 玩家購買 Health Potion ==" << std::endl;
-    shop.buyItem(player, "potion01");
+        if ( input == "q" || input == "Q" ) {
+            std::cout << "離開商店...\n";
+            break;
+        } // end if
+
+        shop.buyItem( player, input );
+    } // end while
 
     std::cout << "\n== 玩家狀態（購買後） ==" << std::endl;
     player.showStatus();
     player.showPlayInventory();
 
-    std::cout << "\n== 玩家販售 Iron Sword ==" << std::endl;
-
-    // 從背包取出第一個物品來賣
-    if (!player.getInventory().items.empty()) {
-        shop.sellItem(player, player.getInventory().items[0]);
+    /*
+    // 顯示販售示範（這段可以保留或移除）
+    std::cout << "\n== 玩家販售第一個背包物品 ==" << std::endl;
+    if (!player.getInventory().empty()) {
+        shop.sellItem(player, player.getInventory()[0]);
     }
 
     std::cout << "\n== 玩家狀態（販售後） ==" << std::endl;
     player.showStatus();
     player.showPlayInventory();
+    */
 } // end handleShop()
 
 void handleQuest() {

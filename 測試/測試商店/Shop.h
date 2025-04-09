@@ -4,7 +4,9 @@
 #include <string>
 #include <iostream>
 
+
 class Shop {
+
 private:
     ItemSystem& itemSystem;  // 引用 ItemSystem
 
