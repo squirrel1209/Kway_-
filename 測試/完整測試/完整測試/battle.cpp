@@ -1,7 +1,4 @@
-#include "monster.cpp"
-#include <windows.h>
-
-
+#include "battle.h"
 
 
 void freezeCout()
@@ -13,7 +10,7 @@ void freezeCout()
 }
 
 //戰鬥(史萊姆)
-void battle(Player &p,Slime &m)
+void battle(Character &p,Slime &m)
 {
     //玩家輸入指令
     std::string order; 
@@ -47,6 +44,8 @@ void battle(Player &p,Slime &m)
             if(!m.isAlive())
             {
                 std::cout << "史萊姆被擊倒了 !" << std::endl;
+                p.money += m.level*60;
+                std::cout << "獲得" << m.level*60 << "金錢!" <<std::endl;
                 freezeCout();
                 break;
             };
@@ -58,7 +57,7 @@ void battle(Player &p,Slime &m)
 
         //輪到史萊姆回合
         //史萊姆血量小於30%時會回復生命
-        if(m.hp<=(m.max_hp*0.3))
+        if(m.battleHp<=(m.hp*0.3))
         {
             m.cure(m.level);
         }
@@ -74,7 +73,8 @@ void battle(Player &p,Slime &m)
             freezeCout();
             break;
         }
-
+        
+        
         freezeCout();
     }
 }
@@ -82,7 +82,7 @@ void battle(Player &p,Slime &m)
 //=========================================================================================================================
 
 //戰鬥(哥布林)
-void battle(Player &p,Goblin &m)
+void battle(Character &p,Goblin &m)
 {
     //玩家輸入指令
     std::string order; 
@@ -127,6 +127,8 @@ void battle(Player &p,Goblin &m)
             else if(!m.isAlive())
             {
                 std::cout << "哥布林被擊倒了 !" << std::endl;
+                p.money += m.level*80;
+                std::cout << "獲得" << m.level*80 << "金錢!" <<std::endl;
                 freezeCout();
                 break;
             };
@@ -168,7 +170,7 @@ void battle(Player &p,Goblin &m)
 
 
 //戰鬥(火龍)
-void battle(Player &p,Dragon &m)
+void battle(Character &p,Dragon &m)
 {
     //玩家輸入指令
     std::string order; 
@@ -202,6 +204,8 @@ void battle(Player &p,Dragon &m)
             if(!m.isAlive())
             {
                 std::cout << "火龍被擊倒了 !" << std::endl;
+                p.money += m.level*500;
+                std::cout << "獲得" << m.level*500 << "金錢!" <<std::endl;
                 freezeCout();
                 break;
             };

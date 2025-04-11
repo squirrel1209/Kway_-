@@ -1,3 +1,130 @@
-Character ━━▶ Inventory ━━▶ Item
-                     │
-                     └── contains → InventoryItem（結構）
+LoginSystem --> IPlayerData <-- FilePlayerData
+    |
+    | uses
+    v
+Character <--> Inventory --> InventoryItem --> Item*
+      ^                                   ^
+      |                                   |
+      | uses                              |
+      +---------------------------+       |
+                                  |       |
+                                Shop --> ItemSystem --> ItemInfo
+
+
+1. ItemInfo
+描述：
+這是物品的靜態資料結構，包含了每個物品的基本信息。這些資訊不會變動，作為所有物品的模板或資料來源。
+
+屬性：
+
+id：物品的唯一識別碼。
+
+name：物品名稱。
+
+description：物品描述，通常是物品的用途或特性。
+
+price：物品的價格。
+
+attack：物品的攻擊力，適用於武器類物品。
+
+2. Item
+描述：
+這是遊戲中每個物品的具體實例，包含了物品的靜態資料（ItemInfo）並允許對物品進行操作，如顯示資訊、比較等。
+
+方法：
+
+getInfo()：返回物品的靜態資料（ItemInfo）。
+
+operator==()：比較兩個物品是否相等，主要依賴於物品的 id。
+
+3. ItemSystem
+描述：
+負責管理遊戲中的物品資料，存儲所有可用的物品定義（ItemInfo）。提供創建物品實例的功能。
+
+方法：
+
+createItem()：根據物品的 id 創建一個具體的 Item 實例。
+
+4. InventoryItem
+描述：
+代表背包中的一個物品項目，包括一個指向 Item 實例的指針以及物品的數量。
+
+屬性：
+
+item：指向具體物品的指針。
+
+quantity：物品的數量。
+
+5. Inventory
+描述：
+代表玩家的背包，儲存所有物品項目（InventoryItem），並提供方法來添加、移除物品。
+
+方法：
+
+addItem()：向背包中添加物品，若物品已存在則增加數量。
+
+removeItem()：從背包中移除指定數量的物品。
+
+showInventory()：顯示背包中所有物品及其數量。
+
+serialize()：將背包資料序列化成字符串（用於存儲）。
+
+deserialize()：從字符串反序列化背包資料。
+
+6. Character
+描述：
+代表玩家角色，包含角色的基本信息（如名稱、等級、血量、金錢等），並且擁有一個背包（Inventory）來管理物品。
+
+方法：
+
+showStatus()：顯示角色的當前狀態（例如血量、金錢等）。
+
+toString()：將角色資料轉換成可儲存的格式。
+
+fromString()：從字符串中反序列化出角色資料。
+
+getInventory()：獲取角色的背包。
+
+setInventory()：設置角色的背包。
+
+7. IPlayerData
+描述：
+這是一個介面，定義了與玩家資料相關的存取操作方法。FilePlayerData 實作了這個介面，負責玩家資料的存儲和讀取。
+
+方法：
+
+savePlayerData()：儲存玩家資料。
+
+loadPlayerData()：載入玩家資料。
+
+8. FilePlayerData
+描述：
+這是 IPlayerData 介面的具體實現，負責將玩家資料（Character）存儲到檔案中，並從檔案中讀取資料。實現了資料的序列化與反序列化。
+
+方法：
+
+savePlayerData()：將玩家資料存儲到檔案中。
+
+loadPlayerData()：從檔案中載入玩家資料。
+
+9. LoginSystem
+描述：
+負責玩家的登入和註冊系統，將使用者提供的帳號和密碼與儲存在檔案中的資料進行比較。它使用 IPlayerData 來儲存和讀取玩家資料。
+
+方法：
+
+registerUser()：註冊新玩家。
+
+loginUser()：玩家登入並驗證帳號密碼。
+
+10. Shop
+描述：
+代表遊戲中的商店，玩家可以在商店中購買和出售物品。商店從 ItemSystem 中獲取所有可交易物品。
+
+方法：
+
+showItems()：顯示商店中的所有物品。
+
+buyItem()：玩家購買物品。
+
+sellItem()：玩家出售物品。

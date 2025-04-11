@@ -4,6 +4,6 @@ squirrel
 100
 9999300
 10
-bow_long,1
-giant_tree,3
 sword_dragon,1
+giant_tree,3
+bow_long,1

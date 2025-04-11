@@ -18,8 +18,8 @@ protected:
     std:: string name;    //名字
     int level;      //等級
     int attackPower;//攻擊力
-    int max_hp;     //最大生命
-    int hp;         //生命
+    int max_hp;     //原始生命
+    int hp;         //戰鬥生命
 public:
     Monster(std:: string name,int level,int base_hp, int base_atk, int hp_growth, int atk_growth);
     ~Monster(){};

@@ -21,17 +21,8 @@ void Player::cure( int level )
 
 bool Player::isAlive()
 {
-    if(hp<=0)return false;
+    if (  hp <= 0 )return false;
     else return true;
-}
-
-void coutSpace(std::string s,int space)
-{
-    std::cout << s;
-    for(int i=0;i<space-s.length();i++)
-    {
-        std::cout << " ";
-    }
 }
 
 void Player::printStatus()
