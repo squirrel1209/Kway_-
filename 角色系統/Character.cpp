@@ -54,3 +54,52 @@ void Character::setInventory( const Inventory& inv ) {
 Inventory& Character::getInventory() {
     return this -> inventory;
 }
+
+//-----------------------------------------戰鬥----------------------------------
+
+void Character::attack() {
+    std::cout << "玩家造成了" << attackPower << "點傷害" << std::endl;
+} // end attack()
+
+void Character::defense( int damage ) {
+    std::cout << "玩家承受了" << damage << "點傷害 !" << std::endl;
+    battleHp -= damage;
+} // end defense()
+
+void Character::cure( int level ) {
+    std:: cout << "玩家恢復了" << level/3+1 << "點生命 !" << std::endl;
+    battleHp += ( level / 3 + 1 ) ;
+    if ( battleHp > hp ) battleHp = hp;
+} // end cure()
+
+bool Character::isAlive(){
+    if( battleHp <= 0 )return false;
+    else return true;
+}
+
+void coutSpace( std::string s,int space ) {
+    std::cout << s;
+    for( int i = 0 ; i < space-s.length() ; i++ )
+    {
+        std::cout << " ";
+    }
+}
+
+void Character::printStatus()
+{
+    coutSpace( name,6 );
+    coutSpace( " Lv: " + std::to_string( level ), 8 );
+    coutSpace( " ATK: " + std::to_string( attackPower ),8 );
+    std::cout << " HP: ";
+
+    //HP低於1/3會顯示紅色警示
+    if( battleHp <= hp / 3 )
+    {
+        std::cout << (std::string( RED ) + std::to_string( battleHp ) + RESET);
+    }
+    else
+        std::cout << battleHp;
+
+    std::cout << "/" << hp;
+    std::cout << " Money: " << (std::string( GOLD ) + std::to_string( money ) + RESET);
+}

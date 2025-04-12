@@ -1,17 +1,16 @@
 #include <iostream>
-#include "Character.h"
 #include "ItemSystem.h"
 #include "Inventory.h"
 #include "Shop.h"
 #include "LoginSystem.h"
+#include "Quest.h"
 
-using namespace std;
 
 void showLoginMenu();
 void handleRegistration( LoginSystem& loginSystem );
 bool handleLogin( LoginSystem& loginSystem, std::string& username, std::string& password );
 void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage );
-void handleCombat();
+void handleCombat( Character& player );
 void handleShop( Shop& shop, Character& player );
 void handleQuest();
 
@@ -131,7 +130,7 @@ void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage ) 
             case 1: {
                 // 登入成功，清空命令行畫面
                 system( "cls" );
-                handleCombat();
+                handleCombat( player );
                 break;
             } // 戰鬥
 
@@ -165,9 +164,10 @@ void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage ) 
     } // end while
 } // end showMainMenu()
 
-void handleCombat() {
+void handleCombat( Character& player ) {
     std::cout << "進入戰鬥模式..." << std::endl;
     // 這裡可以加入戰鬥邏輯
+    Quest( player );
 } // end handleCombat()
 
 void handleShop( Shop& shop, Character& player ) {
@@ -215,3 +215,5 @@ void handleQuest() {
     std::cout << "查看任務..." << std::endl;
     // 這裡可以加入任務邏輯
 } // end handleQuest()
+
+

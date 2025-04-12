@@ -4,9 +4,22 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <iomanip>
 #include "Inventory.h"
 
-//ItemSystem itemSystem; // 全域變數，(之後要修改)
+// ANSI 顏色定義
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define CYAN    "\033[36m"
+#define BOLD    "\033[1m"
+#define GOLD    "\033[1;33m"
+
+class Slime;
+class Goblin;
+class Dragon;
+void coutSpace( std::string s,int space );
+
 
 class Character {
     friend class Shop;
@@ -20,12 +33,13 @@ protected:
     int attackPower;          // 攻擊力
     Inventory inventory;      // 背包（包含持有物品）
 
+    int battleHp;      // 戰鬥用血量
 public:
     void showPlayInventory() const { inventory.showInventory(); } // 顯示背包物品
 
     Character();
     Character( const std::string& name, const std::string& password, int level = 1, int hp = 100, int money = 500, int attackPower = 10 ,int maxSlots = 20 ) 
-        : name( name ), password( password ),  level( level ), hp( hp ), money( money ), attackPower( attackPower ), inventory( maxSlots ) {}
+        : name( name ), password( password ),  level( level ), hp( hp ), money( money ), attackPower( attackPower ), inventory( maxSlots ) { battleHp = hp; }
         
     // 顯示玩家狀態
     void showStatus() const ;
@@ -50,7 +64,18 @@ public:
     Inventory& getInventory();
 
     void setInventory( const Inventory& inventory );
-    
+
+
+    //---------------------------------------------戰鬥---------------------------------------------
+    void printStatus();
+    void attack();
+    void defense(int damage);
+    void cure(int level);
+    bool isAlive();
+    friend void battle ( Character &p , Slime &m );
+    friend void battle ( Character &p , Goblin &m );
+    friend void battle ( Character &p , Dragon &m );
+    friend void Quest  ( Character &p);
 };
 
 
