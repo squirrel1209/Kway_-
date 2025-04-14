@@ -84,13 +84,14 @@ void battle(Character &p,Slime &m)
 //戰鬥(哥布林)
 void battle(Character &p,Goblin &m)
 {
+    //哥布林擋死一次
+    int goblin_revive = 1;
     //玩家輸入指令
     std::string order; 
     while ( p.isAlive() && m.isAlive() )
     {
         system ( "cls" );
-        //紀錄哥布林的可復活次數及匕首攻擊的冷卻時間
-        static int goblin_revive = 1;
+        //紀錄匕首攻擊的冷卻時間
         static int goblin_bladeCD = 0;
 
         //列出玩家及怪物的狀態

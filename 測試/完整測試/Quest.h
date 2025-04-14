@@ -10,4 +10,4 @@ extern std::vector<std::string> dragonBox;
 void printMonsterRow(const std::vector<std::vector<std::string>>& boxes);
 
 //與怪物戰鬥
-void Quest(Character& p);
+void Quests(Character& p);

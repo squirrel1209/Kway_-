@@ -6,6 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include "Inventory.h"
+#include "QuestSystem.h"
 
 // ANSI 顏色定義
 #define RESET   "\033[0m"
@@ -75,7 +76,13 @@ public:
     friend void battle ( Character &p , Slime &m );
     friend void battle ( Character &p , Goblin &m );
     friend void battle ( Character &p , Dragon &m );
-    friend void Quest  ( Character &p);
+    friend void Quests  ( Character &p);
+
+    //---------------------------------------------任務----------------------------------------------
+    friend class Quest;
+    void addMoney(int amount);
+    void AcceptQuest(const Quest& quest);
+    void showAcceptQuests() const;
 };
 
 

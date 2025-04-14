@@ -2,13 +2,6 @@
 
 
 void LoginSystem::registerUser( const std::string& username, const std::string& password ) {
-    // 檢查帳號是否已存在
-    Character existingPlayer = playerDataStorage -> loadPlayerData( username );
-    if ( !existingPlayer.getName().empty() ) {
-        std::cout << "Account already exists!" << std::endl;
-        return;
-    } // end if
-
     Character player( username, password );  // 創建一個新的玩家
     playerDataStorage -> savePlayerData( player );  // 儲存玩家資料
     std::cout << "Registration successful~" << std::endl;

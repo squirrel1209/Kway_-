@@ -45,7 +45,7 @@ void printMonsterRow(const std::vector<std::vector<std::string>>& boxes) {
 }
 
 
-void Quest(Character& p)
+void Quests(Character& p)
 {
     std::vector<std::vector<std::string>> monsters;
 

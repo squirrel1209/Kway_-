@@ -34,7 +34,7 @@ public:
 class Slime:public Monster
 {
 public:
-    Slime( int level ):Monster( "Slime" , level , 5 , 2 , 1 , 1 ) {};
+    Slime( int level ):Monster( "Slime" , level , 10 , 2 , 1 , 1 ) {};
     void attack() override;
     void defense( int damage )override;
     void cure( int level );
@@ -44,7 +44,7 @@ public:
 class Goblin:public Monster
 {
 public:
-    Goblin( int level ):Monster( "Goblin" , level , 7 , 3 , 2 , 2 ) {};
+    Goblin( int level ):Monster( "Goblin" , level , 10 , 3 , 2 , 2 ) {};
     void attack() override;
     void defense( int damage )override;
     void bladeAttack();

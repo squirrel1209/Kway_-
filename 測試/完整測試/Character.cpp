@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character() : name(""), password(""), level(1), hp(100), money(500), attackPower( 10 ), inventory( 20 ) {}
+Character::Character() : name(""), password(""), level(1), hp(100), money(500), attackPower( 5 ), inventory( 20 ) {}
 
 void Character::showStatus() const {
     std::cout << "玩家: " << name << " | 等級: " << level << " | HP: " << hp << " | 金錢: " << money << " | 攻擊力: " << attackPower << std::endl;
@@ -103,3 +103,22 @@ void Character::printStatus()
     std::cout << "/" << hp;
     std::cout << " Money: " << (std::string( GOLD ) + std::to_string( money ) + RESET);
 }
+
+
+//################################################################################
+
+void Character::addMoney(int amount){
+    money += amount;
+}
+
+
+void Character::AcceptQuest(const Quest& quest){
+    //AcceptQuests.push_back(quest);
+    std::cout<<"你已接受任務「"<<quest.getDescription()<<"」"<<std::endl;
+}
+/*void Character::showAcceptQuests() const{
+    std::cout<<"你目前接取的任務:"<<std::endl;
+    for(const auto& q : AcceptQuests){
+        std::cout<<"---"<<q.getDescription()<<"獎勵:"<<q.getReward()<<"金幣"<<std::endl;
+    }
+}*/

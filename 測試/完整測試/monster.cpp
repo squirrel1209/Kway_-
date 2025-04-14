@@ -105,5 +105,6 @@ void Dragon::fire( Character& p )
 void Dragon::autoCure()
 {
     battleHp += level / 2 + 1;
+    if(battleHp>hp) battleHp = hp;
     std::cout << "火龍正在自我回復，回復了" << level / 2 + 1 << "點生命" << std::endl;
 }

@@ -1,1 +1,1 @@
-g++ -o main.exe battle.o Character.o FilePlayerData.o Inventory.o ItemSystem.o Loginsystem.o main.o monster.o Quest.o Shop.o
+g++ -o main.exe battle.o Character.o FilePlayerData.o Inventory.o ItemSystem.o Loginsystem.o main.o monster.o Quest.o Shop.o QuestSystem.o

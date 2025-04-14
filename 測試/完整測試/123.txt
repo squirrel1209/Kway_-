@@ -1,0 +1,9 @@
+123
+123
+1
+100
+9950
+10
+bow_long,1
+giant_tree,1
+axe_steel,1

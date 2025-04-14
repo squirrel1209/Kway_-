@@ -4,6 +4,7 @@
 #include "Shop.h"
 #include "LoginSystem.h"
 #include "Quest.h"
+#include "QuestSystem.h"
 
 
 void showLoginMenu();
@@ -12,7 +13,7 @@ bool handleLogin( LoginSystem& loginSystem, std::string& username, std::string& 
 void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage );
 void handleCombat( Character& player );
 void handleShop( Shop& shop, Character& player );
-void handleQuest();
+void handleQuest( Character& player );
 
 int main() {
     FilePlayerData fileStorage; // 使用檔案儲存方式
@@ -115,6 +116,7 @@ bool handleLogin( LoginSystem &loginSystem, std::string &username, std::string &
 void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage ) {
     int choice;
     while ( true ) {
+        system("cls");
         std::cout << "==============================" << std::endl;
         std::cout << "        遊戲主畫面           " << std::endl;
         std::cout << "==============================" << std::endl;
@@ -144,7 +146,7 @@ void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage ) 
             case 3: {
                 // 登入成功，清空命令行畫面
                 system( "cls" );
-                handleQuest();
+                handleQuest( player );
                 break;
             } // 任務
 
@@ -167,7 +169,7 @@ void showMainMenu( Shop& shop, Character& player, FilePlayerData& fileStorage ) 
 void handleCombat( Character& player ) {
     std::cout << "進入戰鬥模式..." << std::endl;
     // 這裡可以加入戰鬥邏輯
-    Quest( player );
+    Quests( player );
 } // end handleCombat()
 
 void handleShop( Shop& shop, Character& player ) {
@@ -186,6 +188,7 @@ void handleShop( Shop& shop, Character& player ) {
         std::cin >> input;
 
         if ( input == "q" || input == "Q" ) {
+            system("cls");
             std::cout << "離開商店...\n";
             break;
         } // end if
@@ -211,9 +214,10 @@ void handleShop( Shop& shop, Character& player ) {
     */
 } // end handleShop()
 
-void handleQuest() {
+void handleQuest( Character& player ) {
     std::cout << "查看任務..." << std::endl;
     // 這裡可以加入任務邏輯
+    startQuest( player );
 } // end handleQuest()
 
 
