@@ -16,6 +16,8 @@ void handleShop( Shop& shop, Character& player );
 void handleQuest( Character& player );
 
 int main() {
+    SetConsoleOutputCP( 65001 ); // 設定控制台輸出編碼為 UTF-8
+
     FilePlayerData fileStorage; // 使用檔案儲存方式
     ItemSystem itemSystem; // 物品系統
     Shop shop( itemSystem ); // 商店系統
